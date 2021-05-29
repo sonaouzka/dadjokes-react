@@ -1,8 +1,23 @@
-import React from 'react';
+import React, {useState } from 'react';
 import { render } from 'react-dom';
 import './style.css';
 
-const App = () => (
+
+const App = () => {
+ const [likeUp, setLikeUp] = useState(0);
+ const [likeDown, setLikeDown] = useState(0);
+
+
+ const clickUp = () => {
+  setLikeUp(likeUp + 1);
+ };
+
+
+ const clickDown = () => {
+  setLikeDown(likeDown + 1);
+ };
+
+ return (
   <div className="container">
     <div class="joke">
         <div class="joke__body">
@@ -18,13 +33,14 @@ const App = () => (
           </p>
         </div>
         <div class="joke__likes">
-          <button id="btn-up" class="btn-like btn-like--up"></button>
-          <span id="likes-up" class="likes-count likes-count--up">0</span>
-          <button id="btn-down" class="btn-like btn-like--down"></button>
-          <span id="likes-down" class="likes-count likes-count--down">0</span>
+          <button id="btn-up" class="btn-like btn-like--up" onClick={clickUp}></button>
+          <span id="likes-up" class="likes-count likes-count--up">{likeUp}</span>
+          <button id="btn-down" class="btn-like btn-like--down" onClick={clickDown}></button>
+          <span id="likes-down" class="likes-count likes-count--down">{likeDown}</span>
         </div>
       </div>
   </div>
 );
+};
 
 render(<App />, document.querySelector('#app'));
